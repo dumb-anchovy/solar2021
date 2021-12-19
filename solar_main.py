@@ -68,7 +68,7 @@ def open_file():
     global model_time
 
     model_time = 0.0
-    files=["solar_system.txt", "double_star.txt"]
+    files = ["solar_system.txt", "double_star.txt", "one_satellite.txt"]
     for i in range(len(files)):
         print(i, files[i])
     print("select file number")
