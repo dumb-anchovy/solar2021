@@ -68,7 +68,12 @@ def open_file():
     global model_time
 
     model_time = 0.0
-    in_filename = "solar_system.txt"
+    files=["solar_system.txt", "double_star.txt"]
+    for i in range(len(files)):
+        print(i, files[i])
+    print("select file number")
+    i = int(input())
+    in_filename = files[i]
     space_objects = read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.obj.x), abs(obj.obj.y)) for obj in space_objects])
     calculate_scale_factor(max_distance)
@@ -164,3 +169,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+pg.quit()
