@@ -1,6 +1,5 @@
 # coding: utf-8
 # license: GPLv3
-import math
 
 gravitational_constant = 6.67408E-11
 """Гравитационная постоянная Ньютона G"""
@@ -21,12 +20,8 @@ def calculate_force(body, space_objects):
         if body == obj:
             continue  # тело не действует гравитационной силой на само себя!
         r = ((body.x - obj.x)**2 + (body.y - obj.y)**2)**0.5
-        r = max(r, body.R)
-        F = (gravitational_constant * obj.m * body.m) / (r ** 2)  # сила гравитационного притяжения
-        tan_angle = (obj.y - body.y) / (obj.x - body.x)
-        angle = math.atan(tan_angle)  # угол
-        body.Fx += F * math.cos(angle)
-        body.Fy += F * math.sin(angle)
+        body.Fx += (obj.x - body.x) / (r ** 3) * gravitational_constant * obj.m * body.m
+        body.Fy += (obj.y - body.y) / (r ** 3) * gravitational_constant * obj.m * body.m
 
 def move_space_object(body, dt):
     """Перемещает тело в соответствии с действующей на него силой.
